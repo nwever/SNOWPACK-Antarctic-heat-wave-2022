@@ -167,7 +167,7 @@ BEGIN {
 			sum_dhs_subl+=$dhs_subl;
 			sum_dhs_sett+=$dhs_sett;
 			sum_dhs_erod+=$dhs_erod;
-			sum_dhs_redepo+=$dhs_redepo;
+			sum_dhs_redepo+=($dhs_redepo!=nodata)?($dhs_redepo):(0);
 			n++;
 		}
 		# Calculate climatological values
@@ -200,7 +200,7 @@ BEGIN {
 				sumc_dhs_subl+=$dhs_subl;
 				sumc_dhs_sett+=$dhs_sett;
 				sumc_dhs_erod+=$dhs_erod;
-				sumc_dhs_redepo+=$dhs_redepo;
+				sumc_dhs_redepo+=($dhs_redepo!=nodata)?($dhs_redepo):(0);
 				nc++;
 			}
 			if (substr($1,6,11) == substr(pend,6,11)) {
