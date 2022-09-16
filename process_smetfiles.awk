@@ -8,6 +8,7 @@ function calcsd (fs1, fs2, fn) {
 }
 function printOutput ()
 {
+
 	if (NR==1) return;
 	split(cmd_out,a," ");
 	if (!ho) {
@@ -15,20 +16,20 @@ function printOutput ()
 		# Coordinates
 		printf "#lon lat easting northing altitude";
 		# Event data
-		printf " nsteps dSWE_(kg/m2) dFAC_(m) mssnow_(kg/m2) mswind_(kg/m2) mssnow_net_(kg/m2) msrain_(kg/m2) mssublimation_(kg/m2) msevaporation_(kg/m2) msrunoff_(kg/m2) msmelt_(kg/m2) mass_balance_(kg/m2) qs_(W/m2) ql_(W/m2) qr_(W/m2) lwr_net_(W/m2) swr_net_(W/m2) energy_balance_(W/m2)";
-		printf " nsteps_clim dSWE_clim_(kg/m2) dSWE_clim_sd_(kg/m2) dFAC_clim_(m) dFAC_clim_sd_(m) mssnow_clim_(kg/m2) mssnow_clim_sd_(kg/m2) mswind_clim_(kg/m2) mswind_clim_sd_(kg/m2) mssnow_net_clim(kg/m2) mssnow_net_clim_sd(kg/m2) msrain_clim_(kg/m2) msrain_clim_sd_(kg/m2) mssublimation_clim_(kg/m2) mssublimation_clim_sd_(kg/m2) msevaporation_clim_(kg/m2) msevaporation_clim_sd_(kg/m2) msrunoff_clim_(kg/m2) msrunff_clim_sd_(kg/m2) msmelt_clim_(kg/m2) msmelt_clim_sd_(kg/m2) mass_balance_clim_(kg/m2) mass_balance_clim_sd_(kg/m2) qs_clim_(W/m2) qs_clim_sd_(W/m2) ql_clim_(W/m2) ql_clim_sd_(W/m2) qr_clim_(W/m2) qr_clim_sd_(W/m2) lwr_net_clim_(W/m2) lwr_net_clim_sd_(W/m2) swr_net_clim_(W/m2) swr_net_clim_sd_(W/m2) energy_balance_clim_(W/m2) energy_balance_clim_sd_(W/m2)\n";
+		printf " nsteps dSWE_(kg/m2) dFAC_(m) mssnow_(kg/m2) mswind_(kg/m2) mssnow_net_(kg/m2) msrain_(kg/m2) mssublimation_(kg/m2) msevaporation_(kg/m2) msrunoff_(kg/m2) msmelt_(kg/m2) mass_balance_(kg/m2) qs_(W/m2) ql_(W/m2) qr_(W/m2) lwr_net_(W/m2) swr_net_(W/m2) energy_balance_(W/m2) dhs_snow_(mm) dhs_subl_(mm) dhs_sett_(mm) dhs_erod_(mm) dhs_redepo_(mm)";
+		printf " nsteps_clim dSWE_clim_(kg/m2) dSWE_clim_sd_(kg/m2) dFAC_clim_(m) dFAC_clim_sd_(m) mssnow_clim_(kg/m2) mssnow_clim_sd_(kg/m2) mswind_clim_(kg/m2) mswind_clim_sd_(kg/m2) mssnow_net_clim(kg/m2) mssnow_net_clim_sd(kg/m2) msrain_clim_(kg/m2) msrain_clim_sd_(kg/m2) mssublimation_clim_(kg/m2) mssublimation_clim_sd_(kg/m2) msevaporation_clim_(kg/m2) msevaporation_clim_sd_(kg/m2) msrunoff_clim_(kg/m2) msrunff_clim_sd_(kg/m2) msmelt_clim_(kg/m2) msmelt_clim_sd_(kg/m2) mass_balance_clim_(kg/m2) mass_balance_clim_sd_(kg/m2) qs_clim_(W/m2) qs_clim_sd_(W/m2) ql_clim_(W/m2) ql_clim_sd_(W/m2) qr_clim_(W/m2) qr_clim_sd_(W/m2) lwr_net_clim_(W/m2) lwr_net_clim_sd_(W/m2) swr_net_clim_(W/m2) swr_net_clim_sd_(W/m2) energy_balance_clim_(W/m2) energy_balance_clim_sd_(W/m2) dhs_snow_clim_(mm) dhs_snow_clim_sd_(mm) dhs_subl_clim_(mm) dhs_subl_clim_sd_(mm) dhs_sett_clim_(mm) dhs_sett_clim_sd_(mm) dhs_erod_clim_(mm) dhs_erod_clim_sd_(mm) dhs_redepo_clim_(mm) dhs_redepo_clim_sd_(mm)\n";
 	}
 	# Print coordinates
 	printf "%.3f %.3f %.0f %.0f %.0f", lon, lat, a[1], a[2], alt
 	# Print event data"
 	if (n>0) {
-		printf " %d %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", n, SWE2-SWE1, FAC2-FAC1, sum_mssnow, sum_mswind, sum_mssnow_net, sum_msrain, sum_mssubl, sum_msevap, sum_msrunoff, sum_msmelt, sum_mb, sum_qs/n, sum_ql/n, sum_qr/n, sum_lwr_net/n, sum_swr_net/n, sum_eb/n;
+		printf " %d %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", n, SWE2-SWE1, FAC2-FAC1, sum_mssnow, sum_mswind, sum_mssnow_net, sum_msrain, sum_mssubl, sum_msevap, sum_msrunoff, sum_msmelt, sum_mb, sum_qs/n, sum_ql/n, sum_qr/n, sum_lwr_net/n, sum_swr_net/n, sum_eb/n, sum_dhs_snow, sum_dhs_subl, sum_dhs_sett, sum_dhs_erod, sum_dhs_redepo;
 	} else {
-		printf " %d %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", n, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata;
+		printf " %d %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", n, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata;
 	}
 	# Print climatology
 	if (nc1>0) {
-		printf " %d %.3f %.3f %.6f %.6f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", nc1 \
+		printf " %d %.3f %.3f %.6f %.6f %.3f %.3f %.3f %.3f %.2f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", nc1 \
 		, sum_dSWEc1 / nc1, calcsd(sum_dSWEc1, sum_dSWEc2, nc1) \
 		, sum_dFACc1 / nc1, calcsd(sum_dFACc1, sum_dFACc2, nc1) \
 		, sumc1_mssnow / nc1, calcsd(sumc1_mssnow, sumc2_mssnow, nc1) \
@@ -45,9 +46,14 @@ function printOutput ()
 		, sumc1_qr / nc1, calcsd(sumc1_qr, sumc2_qr, nc1) \
 		, sumc1_lwr_net / nc1, calcsd(sumc1_lwr_net, sumc2_lwr_net, nc1) \
 		, sumc1_swr_net / nc1, calcsd(sumc1_swr_net, sumc2_swr_net, nc1) \
-		, sumc1_eb / nc1, calcsd(sumc1_eb, sumc2_eb, nc1)
+		, sumc1_eb / nc1, calcsd(sumc1_eb, sumc2_eb, nc1) \
+		, sumc1_dhs_snow / nc1, calcsd(sumc1_dhs_snow, sumc2_dhs_snow, nc1) \
+		, sumc1_dhs_subl / nc1, calcsd(sumc1_dhs_subl, sumc2_dhs_subl, nc1) \
+		, sumc1_dhs_sett / nc1, calcsd(sumc1_dhs_sett, sumc2_dhs_sett, nc1) \
+		, sumc1_dhs_erod / nc1, calcsd(sumc1_dhs_erod, sumc2_dhs_erod, nc1) \
+		, sumc1_dhs_redepo / nc1, calcsd(sumc1_dhs_redepo, sumc2_dhs_redepo, nc1)
 	} else {
-		printf " %d %.3f %.3f %.6f %.6f %.3f %.3f %.3f %.3f %.2f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", 0, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata;
+		printf " %d %.3f %.3f %.6f %.6f %.3f %.3f %.3f %.3f %.2f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f %.3f", 0, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata, nodata;
 	}
 	printf "\n";
 }
@@ -115,6 +121,17 @@ BEGIN {
 					iswr=(i-2);
 				} else if ($i=="OSWR") {
 					oswr=(i-2);
+				# Height change components:
+				} else if ($i=="MS_Snow_dHS") {
+					dhs_snow=(i-2);
+				} else if ($i=="MS_Sublimation_dHS") {
+					dhs_subl=(i-2);
+				} else if ($i=="MS_Settling_dHS") {
+					dhs_sett=(i-2);
+				} else if ($i=="MS_Erosion_dHS") {
+					dhs_erod=(i-2);
+				} else if ($i=="MS_Redeposit_dHS") {
+					dhs_redepo=(i-2);
 				}
 			}
 		}
@@ -145,6 +162,12 @@ BEGIN {
 			sum_lwr_net+=$lwrnet;
 			sum_swr_net+=($iswr-$oswr);
 			sum_eb+=$qs+$ql+$qr+$lwrnet+($iswr-$oswr);
+			# Height change components:
+			sum_dhs_snow+=$dhs_snow;
+			sum_dhs_subl+=$dhs_subl;
+			sum_dhs_sett+=$dhs_sett;
+			sum_dhs_erod+=$dhs_erod;
+			sum_dhs_redepo+=$dhs_redepo;
 			n++;
 		}
 		# Calculate climatological values
@@ -172,6 +195,12 @@ BEGIN {
 				sumc_lwr_net+=$lwrnet;
 				sumc_swr_net+=($iswr-$oswr);
 				sumc_eb+=$qs+$ql+$qr+$lwrnet+($iswr-$oswr);
+				# Height change components:
+				sumc_dhs_snow+=$dhs_snow;
+				sumc_dhs_subl+=$dhs_subl;
+				sumc_dhs_sett+=$dhs_sett;
+				sumc_dhs_erod+=$dhs_erod;
+				sumc_dhs_redepo+=$dhs_redepo;
 				nc++;
 			}
 			if (substr($1,6,11) == substr(pend,6,11)) {
@@ -196,6 +225,12 @@ BEGIN {
 				sumc1_lwr_net+=sumc_lwr_net/nc;
 				sumc1_swr_net+=sumc_swr_net/nc;
 				sumc1_eb+=sumc_eb/nc;
+				# Height change components:
+				sumc1_dhs_snow+=sumc_dhs_snow;
+				sumc1_dhs_subl+=sumc_dhs_subl;
+				sumc1_dhs_sett+=sumc_dhs_sett;
+				sumc1_dhs_erod+=sumc_dhs_erod;
+				sumc1_dhs_redepo+=sumc_dhs_redepo;
 				# Squared sums
 				sum_dSWEc2+=(SWE2c-SWE1c)*(SWE2c-SWE1c);
 				sum_dFACc2+=(FAC2c-FAC1c)*(FAC2c-FAC1c);
@@ -216,6 +251,12 @@ BEGIN {
 				sumc2_lwr_net+=sumc_lwr_net*sumc_lwr_net/(nc*nc);
 				sumc2_swr_net+=sumc_swr_net*sumc_swr_net/(nc*nc);
 				sumc2_eb+=sumc_eb*sumc_eb/(nc*nc);
+				# Height change components:
+				sumc2_dhs_snow+=sumc_dhs_snow*sumc_dhs_snow;
+				sumc2_dhs_subl+=sumc_dhs_subl*sumc_dhs_subl;
+				sumc2_dhs_sett+=sumc_dhs_sett*sumc_dhs_sett;
+				sumc2_dhs_erod+=sumc_dhs_erod*sumc_dhs_erod;
+				sumc2_dhs_redepo+=sumc_dhs_redepo*sumc_dhs_redepo;
 				nc1++;
 
 				# Reset climatological temp sums:
@@ -234,6 +275,11 @@ BEGIN {
 				sumc_lwr_net=0;
 				sumc_swr_net=0;
 				sumc_eb=0;
+				sumc_dhs_snow=0;
+				sumc_dhs_subl=0;
+				sumc_dhs_sett=0;
+				sumc_dhs_erod=0;
+				sumc_dhs_redepo=0;
 				nc=0;
 			}
 		}
@@ -258,6 +304,11 @@ BEGIN {
 		sum_lwr_net=0;
 		sum_swr_net=0;
 		sum_eb=0;
+		sum_dhs_snow=0;
+		sum_dhs_subl=0;
+		sum_dhs_sett=0;
+		sum_dhs_erod=0;
+		sum_dhs_redepo=0;
 		n=0;
 		# Climatological normal sums:
 		sum_dSWEc1=0;
@@ -277,6 +328,11 @@ BEGIN {
 		sumc1_lwr_net=0;
 		sumc1_swr_net=0;
 		sumc1_eb=0;
+		sumc1_dhs_snow=0;
+		sumc1_dhs_subl=0;
+		sumc1_dhs_sett=0;
+		sumc1_dhs_erod=0;
+		sumc1_dhs_redepo=0;
 		nc1=0;
 		# Climatological squared sums:
 		sum_dSWEc2=0;
@@ -296,6 +352,11 @@ BEGIN {
 		sumc2_lwr_net=0;
 		sumc2_swr_net=0;
 		sumc2_eb=0;
+		sumc2_dhs_snow=0;
+		sumc2_dhs_subl=0;
+		sumc2_dhs_sett=0;
+		sumc2_dhs_erod=0;
+		sumc2_dhs_redepo=0;
 		# Transform the coordinates we obtained from the header from EPSG:4326 to EPSG:3031
 		cmd=sprintf("echo %f %f | gdaltransform -s_srs EPSG:4326 -t_srs EPSG:3031", lon, lat);
 		cmd | getline cmd_out;
