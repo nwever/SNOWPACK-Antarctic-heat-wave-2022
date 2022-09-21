@@ -163,7 +163,7 @@ BEGIN {
 			sum_swr_net+=($iswr-$oswr);
 			sum_eb+=$qs+$ql+$qr+$lwrnet+($iswr-$oswr);
 			# Height change components:
-			sum_dhs_snow+=$dhs_snow;
+			sum_dhs_snow+=$dhs_snow+$dhs_erod;
 			sum_dhs_subl+=$dhs_subl;
 			sum_dhs_sett+=$dhs_sett;
 			sum_dhs_erod+=$dhs_erod;
@@ -196,7 +196,7 @@ BEGIN {
 				sumc_swr_net+=($iswr-$oswr);
 				sumc_eb+=$qs+$ql+$qr+$lwrnet+($iswr-$oswr);
 				# Height change components:
-				sumc_dhs_snow+=$dhs_snow;
+				sumc_dhs_snow+=$dhs_snow+$dhs_erod;
 				sumc_dhs_subl+=$dhs_subl;
 				sumc_dhs_sett+=$dhs_sett;
 				sumc_dhs_erod+=$dhs_erod;
